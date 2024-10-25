@@ -1,66 +1,63 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Sistem Pencatatan UAT
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Deskripsi Proyek
+Sistem Pencatatan UAT adalah aplikasi web yang digunakan untuk mengelola **Project**, **Test Suite**, **Test Case**, **Test Result**, dan **Komentar** dalam proses **User Acceptance Testing (UAT)**. Sistem ini juga menyediakan fitur untuk **Kelola User** dan **Profile Management**. Aplikasi ini dibangun menggunakan Laravel dan Livewire untuk mendukung interaksi yang dinamis tanpa harus memuat ulang halaman.
 
-## About Laravel
+## Struktur dan Hierarki Folder
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Struktur folder pada proyek ini mengikuti pola modular, dengan pembagian komponen dan halaman berdasarkan fungsionalitas utama. Berikut adalah penjelasan singkat mengenai struktur folder di dalam direktori `app/Livewire/` dan `resources/views/`:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 1. `app/Livewire/`
+   - **Pages/**  
+     Mengandung file-file Livewire untuk berbagai halaman dalam aplikasi:
+     - **Projects/**  
+       Halaman terkait Project dan pengelolaannya.  
+       - **TestSuites/**  
+         Halaman pengelolaan Test Suites dalam setiap Project.  
+         - **TestCases/**  
+           Halaman untuk mengelola Test Cases dari Test Suite.  
+           - **TestResults/**  
+             Halaman untuk mencatat dan mengelola Test Results dari setiap Test Case.  
+             - **Komentar/**  
+               Halaman untuk menambah dan melihat Komentar terkait Test Results.  
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+   - **Components/**  
+     Berisi komponen Livewire yang modular untuk mendukung berbagai interaksi:
+     - **Projects/**  
+       Komponen untuk menambah, mengedit, dan menghapus Project.  
+       - **TestSuites/**  
+         Komponen untuk menambah, mengedit, dan menghapus Test Suites.  
+         - **TestCases/**  
+           Komponen untuk menambah, mengedit, dan menghapus Test Cases.  
+           - **TestResults/**  
+             Komponen untuk menambah, mengedit, dan menghapus Test Results.  
+             - **Komentar/**  
+               Komponen untuk menambah, mengedit, dan menghapus Komentar.  
 
-## Learning Laravel
+   - **KelolaUser/**  
+     Komponen dan halaman untuk mengelola akun pengguna, seperti pembuatan, pengeditan, dan penghapusan pengguna, serta reset password.  
+     
+   - **Profile/**  
+     Komponen untuk melihat dan mengedit detail profil pengguna serta mengubah password.  
+     
+   - **Navbar.php**  
+     Komponen Global Livewire untuk menampilkan dan mengelola **Navbar** di aplikasi.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 2. `resources/views/`
+   Struktur dalam direktori ini mengikuti penyusunan yang sama seperti di `app/Livewire/`, dengan pembagian folder berdasarkan komponen dan halaman yang terkait.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Instalasi Proyek
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Untuk menginstal dan menjalankan proyek ini di lingkungan lokal, ikuti langkah-langkah berikut:
 
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Clone Repository
+Clone repository dari GitLab atau GitHub menggunakan perintah:
+- git clone https://github.com/username/repository.git
+- Salin file .env.example menjadi .env dan sesuaikan pengaturan yang diperlukan, seperti koneksi database
+- composer install
+- composer require livewire/livewire
+- composer require friendsofphp/php-cs-fixer --dev
+- npm install && npm run build
+- php artisan key:generate
+- php artisan migrate
+- php artisan db:seed
