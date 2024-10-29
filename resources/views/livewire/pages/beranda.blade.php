@@ -1,4 +1,9 @@
 <div>
+    <div class="container mt-4">
+        <h5 class="mb-3">Grafik Jumlah Test Result Berdasarkan Status</h5>
+        <canvas id="testResultChart"></canvas>
+    </div>
+
     <!-- Hasil Test Saya Table -->
     <div class="container mt-4">
         <h5 class="mb-3">Hasil Test Saya</h5>
@@ -124,3 +129,57 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const chartData = @json($chartData); // Data dari backend
+
+        // Pisahkan data label dan total untuk digunakan di Chart.js
+        const labels = chartData.map(item => item.label);
+        const data = chartData.map(item => item.total);
+
+        // Tentukan warna-warna berbeda untuk setiap bar
+        const backgroundColors = [
+            'rgba(255, 99, 132, 0.6)',  // Merah muda
+            'rgba(54, 162, 235, 0.6)',  // Biru
+            'rgba(255, 206, 86, 0.6)',  // Kuning
+            'rgba(75, 192, 192, 0.6)',  // Hijau
+            'rgba(255, 159, 64, 0.6)'   // Oranye
+        ];
+
+        const borderColors = [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(255, 159, 64, 1)'
+        ];
+
+        const ctx = document.getElementById('testResultChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels, // Label setiap status
+                datasets: [{
+                    label: 'Jumlah Test per Status',
+                    data: data, // Jumlah test result per status
+                    backgroundColor: backgroundColors, // Warna custom untuk setiap bar
+                    borderColor: borderColors,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+

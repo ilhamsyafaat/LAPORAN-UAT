@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages;
 
+use App\Models\MStatus;
 use App\Models\TestCase;
 use App\Models\TestResult;
 use App\Models\TestSuite;
@@ -9,12 +10,29 @@ use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-// Menentukan layout untuk komponen ini menggunakan Livewire
 #[Layout('components.layouts.app')]
 class Beranda extends Component
 {
-    use WithPagination; // Menggunakan trait untuk menambahkan dukungan pagination
+    use WithPagination;
     protected $paginationTheme = 'bootstrap';
+
+    // menghitung jumlah TestResult berdasarkan setiap status
+    public function getChartData()
+    {
+        // Mengambil semua status dengan jumlah hasil test terkait
+        $statuses = MStatus::withCount('testResults')->get();
+
+        // Menyiapkan data dalam bentuk array label dan total
+        $chartData = $statuses->map(function ($status) {
+            return [
+                'label' => $status->label,
+                'total' => $status->test_results_count, // Mengambil jumlah test result per status
+            ];
+        });
+
+        return $chartData;
+    }
+
 
     public function render()
     {
@@ -30,11 +48,14 @@ class Beranda extends Component
         $testSuites = TestSuite::with('project')
             ->paginate(5, ['*'], 'testSuitesPage'); // Paginate dengan namespace 'testSuitesPage'
 
+        $chartData = $this->getChartData();
+
         // Mengembalikan view dengan data hasil query
         return view('livewire.pages.beranda', [
             'testResults' => $testResults,
             'testCases' => $testCases,
             'testSuites' => $testSuites,
+            'chartData' => $chartData, // Tambahkan ini
         ]);
     }
 }
